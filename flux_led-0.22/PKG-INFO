@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: flux_led
+Version: 0.22
+Summary: A Python library to communicate with the flux_led smart bulbs
+Home-page: https://github.com/Danielhiversen/flux_led
+Author: Daniel Høyer Iversen
+Author-email: mail@dahoiv.net
+License: LGPLv3+
+Description: UNKNOWN
+Keywords: flux_led,smart bulbs,light
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Other Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.1
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Topic :: Home Automation
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

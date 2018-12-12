@@ -1,0 +1,121 @@
+<h2>Settings - Magic Home Gateway</h2>
+	<TMPL_VAR BASIC.MagicHome_BESCHREIBUNG>
+	<br>
+	<br>
+	<form method="post" data-ajax="false" name="main_form" id="main_form" action="index.cgi">
+		<input type="hidden" name="save" value="save">
+			<div class="form-group">
+				<table class="formtable" border="0" width="100%">
+					<tr>
+						<td width="25%">
+							<label id="labelip"><b><TMPL_VAR BASIC.MagicHome_LB_UDP></b></label>
+						</td>
+						<td width="50%">
+							<input  name="LB_UDP" type="text" class="textfield"
+								value="<TMPL_VAR NAME=LB_UDP>" data-validation-error-msg="* Please enter IP-Adress">
+						</td>
+						<td width="25%">
+							&nbsp;
+							<font size="-1"><TMPL_VAR BASIC.MagicHome_HLB_UDP></font>
+						</td>
+					</tr>
+					<tr>
+						<td width="25%">
+							<label id="labelfbpass"><b>Miniserver:</b></label>
+						</td>
+						<td width="50%">
+							<select id="miniserver" name="miniserver" data-mini="true" onchange="selMS(this);">
+								<TMPL_VAR NAME=LOXLIST>
+							</select>
+						</td>
+						<td width="25%">
+							&nbsp;
+							<font size="-1"><TMPL_VAR BASIC.MagicHome_HMINISERVER></font>
+						</td>
+					</tr>
+					<tr>
+						<td width="25%">
+							<label id="labelmsenabled"><b><TMPL_VAR BASIC.MagicHome_AUTOSTART></b></label>
+						</td>
+						<td width="50%">
+						<table border=0>
+							<tr><td>
+							  <fieldset>
+								 <select id="sendhtml" name="AUTOSTART" data-role="flipswitch" >
+									<option value="0"<TMPL_VAR NAME=AUTOSTARTNO>>Aus</option><option value="1" <TMPL_VAR NAME=AUTOSTARTYES>>Ein</option>\n
+								</select>  
+								
+							  </fieldset>
+							</td><td>
+						</table>
+						</td>
+						<td width="25%">
+							&nbsp;
+							<font size="-1"><TMPL_VAR BASIC.MagicHome_HAUTOSTART></font>
+						</td>
+					</tr>		
+					<tr>
+						<td width="25%">
+							<label id="labelmsenabled"><b><TMPL_VAR BASIC.MagicHome_SETCLOCK></b></label>
+						</td>
+						<td width="50%">
+						<table border=0>
+							<tr><td>
+							  <fieldset>
+								 <select id="sendhtml" name="SETCLOCK" data-role="flipswitch" >
+									<option value="0"<TMPL_VAR NAME=SETCLOCKNO>>Aus</option><option value="1" <TMPL_VAR NAME=SETCLOCKYES>>Ein</option>\n
+								</select>  
+								
+							  </fieldset>
+							</td><td>
+						</table>
+						</td>
+						<td width="25%">
+							&nbsp;
+							<font size="-1"><TMPL_VAR BASIC.MagicHome_HSETCLOCK></font>
+						</td>
+					</tr>			
+							
+							
+					<tr>
+						<td width="25%">
+							&nbsp;
+						</td>
+						<td width="50%">
+							<center>
+								<a id="btncancel" data-role="button" data-inline="true" data-mini="true" data-icon="delete" href="./index.cgi?form=1">Abbrechen</a>
+								<button type="submit" form="main_form" id="do" data-role="button" data-inline="true" data-mini="true" data-icon="check">Speichern</button>
+								<a id="button" data-icon="info" data-role="button" data-inline="true" data-mini="true" 
+								href="<TMPL_VAR NAME=LOGDATEI>" 
+								target="_blank">Logdatei</a>
+							</center>
+						</td>
+						<td width="25%">
+							&nbsp;
+						</td>
+					</tr>		
+			</table>
+			<table class="formtable" border="0" width="100%">
+					
+					<hr>
+					<tr>
+						<td width="25%">
+							<b><TMPL_VAR BASIC.MagicHome_SERVER> <TMPL_VAR NAME=SERVER></b>
+						</td>
+						<td colspan=2 width="50%">
+							<a id="button" data-icon="check" data-role="button" data-inline="true" data-mini="true" href="./index.cgi?start=1">Start</a>
+							<a id="button" data-icon="delete" data-role="button" data-inline="true" data-mini="true" href="./index.cgi?stop=1">Stop</a>
+							<a id="button" data-icon="check" data-role="button" data-inline="true" data-mini="true" href="./index.cgi?restart=1">Restart</a>
+							<a id="button" data-icon="info" data-role="button" data-inline="true" data-mini="true" href="<TMPL_VAR NAME=UDP_MONITOR>" target="_blank">Logdatei</a>
+						</td>
+						<td width="25%">
+							<TMPL_VAR BASIC.MagicHome_HSERVER>
+						</td>
+					</tr>	
+			</tabel>
+		</div>
+	</form>
+
+
+
+
