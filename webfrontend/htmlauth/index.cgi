@@ -117,7 +117,7 @@ for (my $i = 1; $i <=  keys(%miniservers);$i++) {
 
 $template->param( LB_UDP => $LB_UDP);
 $template->param( LOXLIST => $MSselectlist);
-$template->param( LOGDATEI => "/admin/system/tools/logfile.cgi?logfile=plugins/$lbpplugindir/magichome.log&header=html&format=template");
+#$template->param( LOGDATEI => "/admin/system/tools/logfile.cgi?logfile=plugins/$lbpplugindir/magichome.log&header=html&format=template");
 $template->param( UDP_MONITOR => "/admin/system/tools/logfile.cgi?logfile=plugins/$lbpplugindir/magichome_udpMonitor.log&header=html&format=template");
 # $template->param( UDPPORT => $UDPPORT);
 # $template->param( WEBSITE => "http://$ENV{HTTP_HOST}/plugins/$lbpplugindir/index.cgi");

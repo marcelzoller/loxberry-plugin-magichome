@@ -121,34 +121,34 @@ LOGINF "MagicHome Befehl2: $MagicHome_Befehl2";
 LOGINF "MagicHome Befehl3: $MagicHome_Befehl3";
 
 
+if(index($MagicHome_Befehl,"all_on")!=-1){
+	#print ">>>>>>  FOUND ALL ON <<<<<<<\n";
+	LOGDEB "Befehl --ALL off";
+	LOGDEB "python -m flux_led -sS --on";
+	system ("python -m flux_led -sS --on>$filename 2>&1");
+	$res = result($filename); 
+	
+}  elsif(index($MagicHome_Befehl,"all_off")!=-1){
+	#print ">>>>>>  FOUND ALL OFF <<<<<<<\n";
+	LOGDEB "Befehl --ALL off";
+	LOGDEB "python -m flux_led -sS --off";
+	system ("python -m flux_led -sS --off>$filename 2>&1");
+	$res = result($filename); 
 
-if(index($MagicHome_Befehl,"on")!=-1){
+} elsif(index($MagicHome_Befehl,"on")!=-1){
 	#print ">>>>>>  FOUND ON <<<<<<<\n";
 	LOGDEB "Befehl --on";
 	LOGDEB "python -m flux_led $MagicHome_IP --on";
 	system ("python -m flux_led $MagicHome_IP --on>$filename 2>&1");
 	$res = result($filename); 
-	
-}  elsif(index($MagicHome_Befehl,"off")!=-1){
+
+} elsif(index($MagicHome_Befehl,"off")!=-1){
 	#print ">>>>>>  FOUND OFF <<<<<<<\n";
 	LOGDEB "Befehl --off";
 	LOGDEB "python -m flux_led $MagicHome_IP --off";
 	system("python -m flux_led $MagicHome_IP --off>$filename 2>&1");
 	$res = result($filename); 
-
-} elsif(index($MagicHome_Befehl,"all_on")!=-1){
-	#print ">>>>>>  FOUND OFF <<<<<<<\n";
-	LOGDEB "Befehl --ALL off";
-	LOGDEB "python -m flux_led -sS --off";
-	system ("python -m flux_led -sS --off>$filename 2>&1");
-	$res = result($filename); 
-
-} elsif(index($MagicHome_Befehl,"all_off")!=-1){
-	#print ">>>>>>  FOUND OFF <<<<<<<\n";
-	LOGDEB "Befehl --ALL off";
-	LOGDEB "python -m flux_led -sS --off";
-	system ("python -m flux_led -sS --off>$filename 2>&1");
-	$res = result($filename); 
+	
 
 } elsif(index($MagicHome_Befehl,"#")!=-1){
 	#print ">>>>>>  FOUND Color # <<<<<<<\n";
@@ -247,7 +247,7 @@ if(index($MagicHome_Befehl,"on")!=-1){
 
 # Sync/Set Clock von allen Magic Home Geräten im Netzwerk
 if($SetClock =="1"){
-	LOGDEB "Set Clock Magic Home\n";
+	LOGINF "Set Clock Magic Home\n";
 	system("python -m flux_led -s --setclock>$filename");
 	$res = result($filename); 
 	}
@@ -280,7 +280,7 @@ sub result
 		LOGERR "$row";
 		$answer = 1;
 	  } else {
-		LOGDEB "$row";
+		LOGINF "$row";
 		$answer = 0;
 	  } 
 	}
