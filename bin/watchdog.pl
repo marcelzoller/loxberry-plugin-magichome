@@ -13,6 +13,7 @@ my %pcfg;
 tie %pcfg, "Config::Simple", "$lbpconfigdir/pluginconfig.cfg";
 my $UDP_Port = %pcfg{'MAIN.LB_UDP_Port'};
 my $UDP_Port2 = $UDP_Port+1;
+my $autostart = $pcfg{'MAIN.autostart'};
 
 my $socket;
 my $sock;
@@ -40,7 +41,6 @@ $sock = IO::Socket::INET->new(
 $sock->send('TEST') or die "Send error: $!\n";
 
 
-
 #Timeout 10s recevie data
 eval {
   local $SIG{ALRM} = sub { die 'Timed Out'; };
@@ -53,6 +53,30 @@ eval {
   exit;
   alarm 0;
 };
+# alarm 0;
+
+# AUTOSTART nach einem neustart oder abstutz!
+# Start Demane neu und prüfe noch einaml.
+if($autostart == 1){
+	LOGERR "Autostart";
+	system ("perl '$lbpbindir/magichome-control.pl' start &");
+
+	$sock->send('TEST') or die "Send error: $!\n";
+
+
+	#Timeout 10s recevie data
+	eval {
+	  local $SIG{ALRM} = sub { die 'Timed Out'; };
+	  alarm 10;
+	  $socket->recv($recieved_data,1024);
+	  print "\nReceived data $recieved_data \n \n";
+	  
+	  $pcfg{'MAIN.UDP_Server_runnig'} = 1;
+	  tied(%pcfg)->write();
+	  exit;
+	  alarm 0;
+	};
+}
 alarm 0;
 
 print "ALARM!!!  UDP-Deamen not work.\n";
