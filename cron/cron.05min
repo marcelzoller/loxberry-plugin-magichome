@@ -9,12 +9,12 @@
 
 # Will be executed as user "loxberry".
 
-if [ -e REPLACEBYBASEFOLDER/webfrontend/html/plugins/REPLACEBYSUBFOLDER/index.cgi ]
-then
-  /usr/bin/perl REPLACEBYBASEFOLDER/webfrontend/html/plugins/REPLACEBYSUBFOLDER/index.cgi
-fi
+# if [ -e REPLACEBYBASEFOLDER1/webfrontend/html/plugins/REPLACEBYSUBFOLDER1/index.cgi ]
+# then
+#  /usr/bin/perl REPLACEBYBASEFOLDER1/webfrontend/html/plugins/REPLACEBYSUBFOLDER1/index.cgi
+# fi
 
-if [ -e REPLACEBYBASEFOLDER2/REPLACEBYSUBFOLDER2/watchdog.pl ]
+if [ -e REPLACEBYBASEFOLDER/REPLACEBYSUBFOLDER/watchdog.pl ]
 then
-  /usr/bin/perl REPLACEBYBASEFOLDER2/REPLACEBYSUBFOLDER2/watchdog.pl
+  /usr/bin/perl REPLACEBYBASEFOLDER/REPLACEBYSUBFOLDER/watchdog.pl
 fi
