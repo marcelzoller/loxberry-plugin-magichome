@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VirtualOut Title="Loxberry MagicHome" Comment="" Address="/dev/udp/172.16.200.66/6668" CmdInit="" CloseAfterSend="true" CmdSep=";">
+	<VirtualOutCmd Title="MagicHome LED On" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.81:on" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
+	<VirtualOutCmd Title="MagicHome LED Color" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.81:#FF0000:on" CmdOnHTTP="" CmdOnPost="" CmdOff="172.16.200.81:#000000:off" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
+	<VirtualOutCmd Title="MagicHome LED Off" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.81:off" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
+	<VirtualOutCmd Title="MagicHome LED Warm White 100_" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.81:W100:on" CmdOnHTTP="" CmdOnPost="" CmdOff="172.16.200.81:W0:off" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
+	<VirtualOutCmd Title="MagicHome LED Warm White 54_" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.81:W54:on" CmdOnHTTP="" CmdOnPost="" CmdOff="172.16.200.81:W0:off" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
+	<VirtualOutCmd Title="MagicHome LED ALL On" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.81:all_on" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
+	<VirtualOutCmd Title="MagicHome LED ALL Off" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.81:all_off" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
+	<VirtualOutCmd Title="MagicHome LED Pattern" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.81:P1:40:on" CmdOnHTTP="" CmdOnPost="" CmdOff="172.16.200.81:P1:0:off" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
+</VirtualOut>
