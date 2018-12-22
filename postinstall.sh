@@ -69,9 +69,12 @@ echo "<INFO> Plugin CONFIG folder is: $PCONFIG"
 # Install Python flux_led Modul
 echo "<INFO> Install Python Module flux_led"
 python -m pip install -U pip setuptools
-cd /tmp/uploads/$PTEMPDIR/flux_led-0.22/
-python /tmp/uploads/$PTEMPDIR/flux_led-0.22/setup.py install 
-python /tmp/uploads/$PTEMPDIR/flux_led-0.22/setup.py install --user
+# cd ./flux_led-0.22/
+python ./flux_led-0.22/setup.py install 
+python ./flux_led-0.22/setup.py install —user
+# cd /tmp/uploads/$PTEMPDIR/flux_led-0.22/
+# python /tmp/uploads/$PTEMPDIR/flux_led-0.22/setup.py install 
+# python /tmp/uploads/$PTEMPDIR/flux_led-0.22/setup.py install --user
 
 # Exit with Status 0
 exit 0
