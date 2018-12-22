@@ -60,4 +60,11 @@ echo "<INFO> Plugin Data folder is: $PDATA"
 echo "<INFO> Plugin Log folder (on RAMDISK!) is: $PLOG"
 echo "<INFO> Plugin CONFIG folder is: $PCONFIG"
 
+
+# Install Python flux_led Modul
+echo "<INFO> Install Python Module flux_led"
+python -m pip install -U pip setuptools
+# cd ./flux_led-0.22/
+python ./flux_led-0.22/setup.py install 
+
 exit 0
