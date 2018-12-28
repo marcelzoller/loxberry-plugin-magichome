@@ -49,8 +49,8 @@ my $filename = 'return.log';
 system ("echo leer>return.log");
 
 # Magic Home Scan Job 
-LOGDEB "python -m flux_led $MagicHome_IP -s";
-system ("python -m flux_led $MagicHome_IP -s>$filename 2>&1");
+LOGDEB "python magichome.py $MagicHome_IP -s";
+system ("python magichome.py $MagicHome_IP -s>$filename 2>&1");
 
 
 
@@ -67,7 +67,6 @@ while (my $row = <$fh>) {
 
 
 # We start the log. It will print and store some metadata like time, version numbers
-# LOGSTART "V-ZUG cronjob start";
   
 # Now we really log, ascending from lowest to highest:
 # LOGDEB "This is debugging";                 # Loglevel 7

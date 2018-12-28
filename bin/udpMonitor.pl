@@ -66,9 +66,6 @@ $sock = IO::Socket::INET->new(
 
 print "\nUDP-Moniter by Marcel Zoller 2018 - V3.3 / Listening on port $UDP_Port\n";
 
-
-while(1)
-{
 # Create my logging object
 my $log = LoxBerry::Log->new ( 
 	name => 'syslogMonitor',
@@ -76,6 +73,10 @@ my $log = LoxBerry::Log->new (
 	append => 1
 	);
 LOGSTART "MagicHome demand UDPMonitor start";
+
+while(1)
+{
+
 
 my $filename = 'return.log';
 system ("echo leer>return.log");
@@ -89,19 +90,27 @@ $recieved_data = decode('iso-8859-1',encode('utf-8', $recieved_data));
 #print $recieved_data;
 #print "\n";
 
+#print "$recieved_data   $datumtime \n"; 
+LOGINF "---------------  START ---------------";
+LOGINF "RECIVED DATE: $recieved_data   $datumtime"; 
 
 
 # Deamon Watchdog 
-if(index($recieved_data,"TEST")!=-1){
-	print "WATCHDOG REV: TEST\n";
+if(index($recieved_data,"WATCHDOG")!=-1){
+	#print "WATCHDOG REV: WATCHDOG\n";
 	LOGDEB "WATCHDOG REV: $recieved_data";
-	$sock->send('TEST') or die "Send error: $!\n";
-	print "WATCHDOG SEND: TEST\n";
-	LOGDEB "WATCHDOG SEND: TEST";
-}
+	$sock->send('WATCHDOG') or die "Send error: $!\n";
+	#print "WATCHDOG SEND: WATCHDOG\n";
+	LOGDEB "WATCHDOG SEND: WATCHDOG";
+	
+	# Sync/Set Clock von allen Magic Home Geräten im Netzwerk
+	if($SetClock =="1"){
+		LOGINF "Set Clock Magic Home\n";
+		system("python magichome.py -s --setclock>$filename");
+		$res = result($filename); 
+	}
 
-print "$recieved_data   $datumtime \n"; 
-LOGINF "RECIVED DATE: $recieved_data   $datumtime"; 
+}
 
 
 
@@ -112,41 +121,42 @@ $MagicHome_Befehl = $splitestate[1];
 $MagicHome_Befehl2 = $splitestate[2];
 $MagicHome_Befehl3 = $splitestate[3];
 
-print "MagicHome IP: $MagicHome_IP\n";
-print "MagicHome Befehl: $MagicHome_Befehl\n";
-print "MagicHome Befehl2: $MagicHome_Befehl2\n";
-LOGINF "MagicHome IP: $MagicHome_IP";
-LOGINF "MagicHome Befehl: $MagicHome_Befehl";
-LOGINF "MagicHome Befehl2: $MagicHome_Befehl2";
-LOGINF "MagicHome Befehl3: $MagicHome_Befehl3";
+#print "MagicHome IP: $MagicHome_IP\n";
+#print "MagicHome Parm 1: $MagicHome_Befehl\n";
+#print "MagicHome Parm 2: $MagicHome_Befehl2\n";
+#print "MagicHome Parm 2: $MagicHome_Befehl3\n";
+LOGDEB "MagicHome IP: $MagicHome_IP";
+LOGDEB "MagicHome Parm 1: $MagicHome_Befehl";
+LOGDEB "MagicHome Parm 2: $MagicHome_Befehl2";
+LOGDEB "MagicHome Parm 3: $MagicHome_Befehl3";
 
 
 if(index($MagicHome_Befehl,"all_on")!=-1){
 	#print ">>>>>>  FOUND ALL ON <<<<<<<\n";
-	LOGDEB "Befehl --ALL off";
-	LOGDEB "python -m flux_led -sS --on";
-	system ("python -m flux_led -sS --on>$filename 2>&1");
+	LOGDEB "Befehl --ALL on";
+	LOGDEB "python magichome.py -sS --on";
+	system ("python magichome.py -sS --on>$filename 2>&1");
 	$res = result($filename); 
 	
 }  elsif(index($MagicHome_Befehl,"all_off")!=-1){
 	#print ">>>>>>  FOUND ALL OFF <<<<<<<\n";
 	LOGDEB "Befehl --ALL off";
-	LOGDEB "python -m flux_led -sS --off";
-	system ("python -m flux_led -sS --off>$filename 2>&1");
+	LOGDEB "python magichome.py -sS --off";
+	system ("python magichome.py -sS --off>$filename 2>&1");
 	$res = result($filename); 
 
 } elsif(index($MagicHome_Befehl,"on")!=-1){
 	#print ">>>>>>  FOUND ON <<<<<<<\n";
 	LOGDEB "Befehl --on";
-	LOGDEB "python -m flux_led $MagicHome_IP --on";
-	system ("python -m flux_led $MagicHome_IP --on>$filename 2>&1");
+	LOGDEB "python magichome.py $MagicHome_IP --on";
+	system ("python magichome.py $MagicHome_IP --on>$filename 2>&1");
 	$res = result($filename); 
 
 } elsif(index($MagicHome_Befehl,"off")!=-1){
 	#print ">>>>>>  FOUND OFF <<<<<<<\n";
 	LOGDEB "Befehl --off";
-	LOGDEB "python -m flux_led $MagicHome_IP --off";
-	system("python -m flux_led $MagicHome_IP --off>$filename 2>&1");
+	LOGDEB "python magichome.py $MagicHome_IP --off";
+	system("python magichome.py $MagicHome_IP --off>$filename 2>&1");
 	$res = result($filename); 
 	
 
@@ -161,26 +171,94 @@ if(index($MagicHome_Befehl,"all_on")!=-1){
 	LOGDEB "RGB: $red,$green,$blue"; 
 	
 	if(index($MagicHome_Befehl2,"on")!=-1){
-		#print "python -m flux_led $MagicHome_IP -c $red,$green,$blue --on\n";
+		#print "python magichome.py $MagicHome_IP -c $red,$green,$blue --on\n";
 		LOGDEB "Befehl --on";
-		LOGDEB "python -m flux_led $MagicHome_IP -c $red,$green,$blue --on";
-		system ("python -m flux_led $MagicHome_IP -c $red,$green,$blue --on>$filename 2>&1");
+		LOGDEB "python magichome.py $MagicHome_IP -c $red,$green,$blue --on";
+		system ("python magichome.py $MagicHome_IP -c $red,$green,$blue --on>$filename 2>&1");
 		$res = result($filename); 
 		
 	} elsif(index($MagicHome_Befehl2,"off")!=-1){
-		#print "python -m flux_led $MagicHome_IP -c $red,$green,$blue --off\n";
+		#print "python magichome.py $MagicHome_IP -c $red,$green,$blue --off\n";
 		LOGDEB "Befehl --off";
-		LOGDEB "python -m flux_led $MagicHome_IP -c $red,$green,$blue --off";
-		system ("python -m flux_led $MagicHome_IP -c $red,$green,$blue --off>$filename 2>&1");
+		LOGDEB "python magichome.py $MagicHome_IP -c $red,$green,$blue --off";
+		system ("python magichome.py $MagicHome_IP -c $red,$green,$blue --off>$filename 2>&1");
 		$res = result($filename); 
 		
 	} else {
-		#print "python -m flux_led $MagicHome_IP -c $red,$green,$blue\n";
-		LOGDEB "python -m flux_led $MagicHome_IP -c $red,$green,$blue";
-		system ("python -m flux_led $MagicHome_IP -c $red,$green,$blue>$filename 2>&1");
+		#print "python magichome.py $MagicHome_IP -c $red,$green,$blue\n";
+		LOGDEB "python magichome.py $MagicHome_IP -c $red,$green,$blue";
+		system ("python magichome.py $MagicHome_IP -c $red,$green,$blue>$filename 2>&1");
 		$res = result($filename); 
 		
 	}
+} elsif(index($MagicHome_Befehl,"RGB")!=-1){
+	#print ">>>>>>  FOUND RGB <<<<<<<\n";
+	LOGDEB "Befehl RGB";
+	
+	# Loxone RGB Code 
+	# %-Wert Rot + % Wert Grün * 1000 + % Wert Blau * 1000000
+	
+	$Lox_RGB_Code = substr($MagicHome_Befehl,3,11);
+	LOGDEB "RGB Code: $Lox_RGB_Code";
+	
+	$fakt = 2.55;
+	if($Lox_RGB_Code==0){
+		# Wenn alle RGB auf Null sind, wird LED ausgeschaltet. = OFF
+		$MagicHome_Befehl2 = "off";
+		$LoxRed = 0;
+		$LoxGreen = 0;
+		$LoxBlue = 0;
+		
+	} elsif($Lox_RGB_Code<=100){
+		$LoxRed = substr($Lox_RGB_Code,-3,3);
+		$LoxGreen = 0;
+		$LoxBlue = 0;
+		
+	} elsif($Lox_RGB_Code<=100100){
+		$LoxRed = substr($MagicHome_Befehl,-3,3);
+		$LoxGreen = substr($MagicHome_Befehl,-6,3);
+		$LoxBlue = 0;
+		
+	} else {
+		$LoxRed = substr($MagicHome_Befehl,-3,3);
+		$LoxGreen = substr($MagicHome_Befehl,-6,3);
+		# Falls der letzte Wert nur 2 Zeichen ist!
+		if(substr($MagicHome_Befehl,-9,1)=="B"){
+			$LoxBlue = substr($MagicHome_Befehl,-8,2);
+		} else {
+			$LoxBlue = substr($MagicHome_Befehl,-9,3);
+		}
+	} 
+	
+	# print "$red,$green,$blue\n";
+	$red = int($LoxRed*$fakt);
+	$green = int($LoxGreen*$fakt);
+	$blue = int($LoxBlue*$fakt);
+		
+	LOGDEB "LoxRGB: $LoxRed,$LoxGreen,$LoxBlue"; 
+	LOGDEB "RGB: $red,$green,$blue"; 
+	
+	if(index($MagicHome_Befehl2,"on")!=-1){
+		#print "python magichome.py $MagicHome_IP -c $red,$green,$blue --on\n";
+		LOGDEB "Befehl --on";
+		LOGDEB "python magichome.py $MagicHome_IP -c $red,$green,$blue --on";
+		system ("python magichome.py $MagicHome_IP -c $red,$green,$blue --on>$filename 2>&1");
+		$res = result($filename); 
+		
+	} elsif(index($MagicHome_Befehl2,"off")!=-1){
+		#print "python magichome.py $MagicHome_IP -c $red,$green,$blue --off\n";
+		LOGDEB "Befehl --off";
+		LOGDEB "python magichome.py $MagicHome_IP -c $red,$green,$blue --off";
+		system ("python magichome.py $MagicHome_IP -c $red,$green,$blue --off>$filename 2>&1");
+		$res = result($filename); 
+		
+	} else {
+		#print "python magichome.py $MagicHome_IP -c $red,$green,$blue\n";
+		LOGDEB "python magichome.py $MagicHome_IP -c $red,$green,$blue";
+		system ("python magichome.py $MagicHome_IP -c $red,$green,$blue>$filename 2>&1");
+		$res = result($filename); 
+		
+	}	
 } elsif(index($MagicHome_Befehl,"W")!=-1){
 	#print ">>>>>>  FOUND WarmeWhite <<<<<<<\n";
 	LOGDEB "Befehl W";
@@ -189,30 +267,35 @@ if(index($MagicHome_Befehl,"all_on")!=-1){
 	# print "WW: $warmwhite\n";
 	LOGDEB "WW: $warmwhite"; 
 	
+	if($warmwhite==0){
+		# Wenn Wert auf Null ist, wird LED ausgeschaltet. = OFF
+		$MagicHome_Befehl2 = "off";
+	}
+	
 	if(index($MagicHome_Befehl2,"on")!=-1){
-		# print "python -m flux_led $MagicHome_IP -w $warmwhite --on\n";
+		# print "python magichome.py $MagicHome_IP -w $warmwhite --on\n";
 		LOGDEB "Befehl --on";
-		LOGDEB "python -m flux_led $MagicHome_IP -w $warmwhite --on";
-		system ("python -m flux_led $MagicHome_IP -w $warmwhite --on>$filename 2>&1");
+		LOGDEB "python magichome.py $MagicHome_IP -w $warmwhite --on";
+		system ("python magichome.py $MagicHome_IP -w $warmwhite --on>$filename 2>&1");
 		$res = result($filename); 
 		
 	} elsif(index($MagicHome_Befehl2,"off")!=-1){
-		# print "python -m flux_led $MagicHome_IP -w $warmwhite --off\n";
+		# print "python magichome.py $MagicHome_IP -w $warmwhite --off\n";
 		LOGDEB "Befehl --off";
-		LOGDEB "python -m flux_led $MagicHome_IP -w $warmwhite --off";
-		system ("python -m flux_led $MagicHome_IP -w $warmwhite --off>$filename 2>&1");
+		LOGDEB "python magichome.py $MagicHome_IP -w $warmwhite --off";
+		system ("python magichome.py $MagicHome_IP -w $warmwhite --off>$filename 2>&1");
 		$res = result($filename); 
 		
 	} else {
-		# print "python -m flux_led $MagicHome_IP -w $warmwhite\n";
-		LOGDEB "python -m flux_led $MagicHome_IP -w $warmwhite";
-		system ("python -m flux_led $MagicHome_IP -w $warmwhite>$filename 2>&1");
+		# print "python magichome.py $MagicHome_IP -w $warmwhite\n";
+		LOGDEB "python magichome.py $MagicHome_IP -w $warmwhite";
+		system ("python magichome.py $MagicHome_IP -w $warmwhite>$filename 2>&1");
 		$res = result($filename); 
 		
 	}
 	
 } elsif(index($MagicHome_Befehl,"P")!=-1){
-	#print ">>>>>>  FOUND WarmeWhite <<<<<<<\n";
+	# print ">>>>>>  FOUND PATTERN <<<<<<<\n";
 	LOGDEB "Befehl PATTERN";
 	$pattern = substr($MagicHome_Befehl,1,3);
 	$pattern = $pattern+36;
@@ -222,37 +305,32 @@ if(index($MagicHome_Befehl,"all_on")!=-1){
 	LOGDEB "Speed: $MagicHome_Befehl2\%";
 	
 	if(index($MagicHome_Befehl3,"on")!=-1){
-		print "python -m flux_led $MagicHome_IP -p $pattern $MagicHome_Befehl2 --on\n";
+		# print "python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2 --on\n";
 		LOGDEB "Befehl --on";
-		LOGDEB "python -m flux_led $MagicHome_IP -p $pattern $MagicHome_Befehl2 --on";
-		system ("python -m flux_led $MagicHome_IP -p $pattern $MagicHome_Befehl2 --on>$filename 2>&1");
+		LOGDEB "python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2 --on";
+		system ("python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2 --on>$filename 2>&1");
 		$res = result($filename); 
 		
 	} elsif(index($MagicHome_Befehl3,"off")!=-1){
-		# print "python -m flux_led $MagicHome_IP -p $pattern $MagicHome_Befehl2 --off\n";
+		# print "python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2 --off\n";
 		LOGDEB "Befehl --off";
-		LOGDEB "python -m flux_led $MagicHome_IP -p $pattern $MagicHome_Befehl2 --off";
-		system ("python -m flux_led $MagicHome_IP -p $pattern $MagicHome_Befehl2 --off>$filename 2>&1");
+		LOGDEB "python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2 --off";
+		system ("python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2 --off>$filename 2>&1");
 		$res = result($filename); 
 		
 	} else {
-		# print "python -m flux_led $MagicHome_IP - -p $pattern $MagicHome_Befehl2\n";
-		LOGDEB "python -m flux_led $MagicHome_IP -p $pattern $MagicHome_Befehl2";
-		system ("python -m flux_led $MagicHome_IP -p $pattern $MagicHome_Befehl2>$filename 2>&1");
+		# print "python magichome.py $MagicHome_IP - -p $pattern $MagicHome_Befehl2\n";
+		LOGDEB "python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2";
+		system ("python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2>$filename 2>&1");
 		$res = result($filename); 
 		
 	}
 	
-}
+} 
 
-# Sync/Set Clock von allen Magic Home Geräten im Netzwerk
-if($SetClock =="1"){
-	LOGINF "Set Clock Magic Home\n";
-	system("python -m flux_led -s --setclock>$filename");
-	$res = result($filename); 
-	}
-	
-LOGEND "Operation finished sucessfully.";
+
+LOGINF "----------------  END ----------------";
+# LOGEND "Operation finished sucessfully.";
 }
 
 $socket->close();

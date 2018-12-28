@@ -38,7 +38,7 @@ $sock = IO::Socket::INET->new(
     PeerAddr => '127.0.0.1',
 ) or die "Could not create socket: $!\n";
 
-$sock->send('TEST') or die "Send error: $!\n";
+$sock->send('WATCHDOG') or die "Send error: $!\n";
 
 
 #Timeout 10s recevie data
@@ -61,7 +61,7 @@ if($autostart == 1){
 	LOGERR "Autostart";
 	system ("perl '$lbpbindir/magichome-control.pl' start &");
 
-	$sock->send('TEST') or die "Send error: $!\n";
+	$sock->send('WATCHDOG') or die "Send error: $!\n";
 
 
 	#Timeout 10s recevie data

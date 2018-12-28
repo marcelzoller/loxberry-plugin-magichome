@@ -60,7 +60,7 @@ echo "<INFO> Plugin Data folder is: $PDATA"
 echo "<INFO> Plugin Log folder (on RAMDISK!) is: $PLOG"
 echo "<INFO> Plugin CONFIG folder is: $PCONFIG"
 
-# Restore Config und Log Files V-ZUG
+# Restore Config und Log Files MagicHome
 echo "<INFO> Copy back existing config files"
 cp -p -v -r /tmp/$PSHNAME\_upgrade/config/* $PCONFIG/
 

@@ -1727,9 +1727,10 @@ def main():
             for b in bulb_info_list:
                 addrs.append(b['ipaddr'])
         else:
-            print("{} bulbs found".format(len(bulb_info_list)))
+            print("<pre>{} Magic Home Controller found</pre>".format(len(bulb_info_list)))
+	    print("<pre><b>   Model		MAC		IP</b></pre>")
             for b in bulb_info_list:
-                print("  {} {}".format(b['id'], b['ipaddr']))
+                print("<pre>  {}	{}	{}</pre>".format(b['model'],b['id'], b['ipaddr']))
             sys.exit(0)
 
     else:
