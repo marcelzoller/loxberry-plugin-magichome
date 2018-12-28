@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<VirtualOut Title="Loxberry MagicHome" Comment="" Address="/dev/udp/172.16.200.66/6668" CmdInit="" CloseAfterSend="true" CmdSep=";">
+<VirtualOut Title="Loxberry MagicHome" Comment="" Address="/dev/udp/172.16.200.98/6668" CmdInit="" CloseAfterSend="true" CmdSep=";">
 	<VirtualOutCmd Title="MagicHome LED On" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.79:on" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
 	<VirtualOutCmd Title="MagicHome LED Color" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.79:#FF0000:on" CmdOnHTTP="" CmdOnPost="" CmdOff="172.16.200.79:#000000:off" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
 	<VirtualOutCmd Title="MagicHome LED Off" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.79:off" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
@@ -7,7 +7,7 @@
 	<VirtualOutCmd Title="MagicHome LED Warm White 54_" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.79:W54:on" CmdOnHTTP="" CmdOnPost="" CmdOff="172.16.200.79:W0:off" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
 	<VirtualOutCmd Title="MagicHome LED ALL On" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn=":all_on" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
 	<VirtualOutCmd Title="MagicHome LED ALL Off" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn=":all_off" CmdOnHTTP="" CmdOnPost="" CmdOff="" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
-	<VirtualOutCmd Title="MagicHome LED Pattern" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.79:P1:40:on" CmdOnHTTP="" CmdOnPost="" CmdOff="172.16.200.79:P1:0:off" CmdOffHTTP="" CmdOffPost="" Analog="false" Repeat="0" RepeatRate="0"/>
+	<VirtualOutCmd Title="MagicHome LED Pattern" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.79:P&lt;v&gt;:40:on" CmdOnHTTP="" CmdOnPost="" CmdOff="172.16.200.79:P&lt;v&gt;:0:off" CmdOffHTTP="" CmdOffPost="" Analog="true" Repeat="0" RepeatRate="0"/>
 	<VirtualOutCmd Title="MagicHome LED RGB" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.79:RGB&lt;v&gt;:on" CmdOnHTTP="" CmdOnPost="" CmdOff="172.16.200.79:RGB&lt;v&gt;:off" CmdOffHTTP="" CmdOffPost="" Analog="true" Repeat="0" RepeatRate="0"/>
 	<VirtualOutCmd Title="MagicHome LED Warm White" Comment="" CmdOnMethod="GET" CmdOffMethod="GET" CmdOn="172.16.200.79:W&lt;v&gt;:on" CmdOnHTTP="" CmdOnPost="" CmdOff="172.16.200.79:W0:off" CmdOffHTTP="" CmdOffPost="" Analog="true" Repeat="0" RepeatRate="0"/>
 </VirtualOut>
