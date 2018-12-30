@@ -31,7 +31,7 @@ LOGSTART "Magic Home htmlauth start";
  
 # Wir Übergeben die Titelzeile (mit Versionsnummer), einen Link ins Wiki und das Hilfe-Template.
 # Um die Sprache der Hilfe brauchen wir uns im Code nicht weiter zu kümmern.
-LoxBerry::Web::lbheader("Magic Home WiFi Plugin V$version", "http://www.loxwiki.eu/MagicHome/Zoller", "help.html");
+LoxBerry::Web::lbheader("Magic Home Gateway Plugin $version", "https://www.loxwiki.eu/display/LOXBERRY/Magic+Home+Gateway", "help.html");
   
 # Wir holen uns die Plugin-Config in den Hash %pcfg. Damit kannst du die Parameter mit $pcfg{'Section.Label'} direkt auslesen.
 my %pcfg;
