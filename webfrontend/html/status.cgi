@@ -189,7 +189,7 @@ while (my $row = <$fh>) {
 		LOGERR "Request unbekannt";
 		LOGERR "Rawdate :$rawdata";
 		print "ERROR<br>";
-		print "Light\@0<br>";}
+		print "Light\@0<br>";
 		print "Pattern\@0<br>";
 		print "Speed\@0<br>";
 		print "Red\@0<br>";
@@ -197,6 +197,7 @@ while (my $row = <$fh>) {
 		print "Blue\@0<br>";
 		print "RGB\@000000000<br>";
 		print "Warmwhite\@0<br>";
+		}
   } else {
 	print "ERROR<br>";
 	LOGERR "$row";
