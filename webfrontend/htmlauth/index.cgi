@@ -121,6 +121,7 @@ $template->param( LOXLIST => $MSselectlist);
 $template->param( UDP_MONITOR => "/admin/system/tools/logfile.cgi?logfile=plugins/$lbpplugindir/magichome_udpMonitor.log&header=html&format=template");
 # $template->param( UDPPORT => $UDPPORT);
 $template->param( WEBSITE => "http://$ENV{HTTP_HOST}/plugins/$lbpplugindir/index.cgi");
+$template->param( WEBSTATUS => "http://$ENV{HTTP_HOST}/plugins/$lbpplugindir/status.cgi");
 # $template->param( PNAME => "Magic Home");
 # $template->param( LBIP => "172.16.200.66");
 
