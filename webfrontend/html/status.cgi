@@ -127,9 +127,11 @@ while (my $row = <$fh>) {
 			print "Light\@1<br>";}
 		else {
 			print "Light\@0<br>";}
-		$pattern = $splitestate[3]-36;
-		if($pattern=>60) {$pattern=0;}
-		print "Pattern\@$pattern<br>";
+		$pat = $splitestate[3];
+		$pat = $pat-36;
+		#print "$splitestate[3]<br>";
+		#if($pat=>60) {$pat=0;}
+		print "Pattern\@$pat<br>";
 		print "Speed\@$splitestate[5]<br>";
 		$red = $splitestate[6];
 		$green = $splitestate[7];
@@ -168,9 +170,11 @@ while (my $row = <$fh>) {
 			print "Light\@1<br>";}
 		else {
 			print "Light\@0<br>";}
-		$pattern = $splitestate[3]-36;
-		if($pattern=>60) {$pattern=0;}
-		print "Pattern\@$pattern<br>";
+		$pat = $splitestate[3];
+		$pat = $pat-36;
+		#print "$splitestate[3]<br>";
+		#if($pat=>60) {$pat=0;}
+		print "Pattern\@$pat<br>";
 		print "Speed\@$splitestate[5]<br>";
 		$red = $splitestate[6];
 		$green = $splitestate[7];
