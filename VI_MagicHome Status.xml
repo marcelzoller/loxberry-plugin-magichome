@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VirtualInHttp Title="MagicHome Status" Comment="" Address="http://loxberry.zoller.local/plugins/magichome/status.cgi?ip=172.16.200.79" PollingTime="60">
+	<VirtualInHttpCmd Title="Light" Comment="" Check="\iLight@\i\v" Signed="true" Analog="true" SourceValLow="0" DestValLow="0" SourceValHigh="100" DestValHigh="100" DefVal="0" MinVal="-10000" MaxVal="10000"/>
+	<VirtualInHttpCmd Title="RGB" Comment="" Check="\iRGB@\i\v" Signed="true" Analog="true" SourceValLow="0" DestValLow="0" SourceValHigh="100" DestValHigh="100" DefVal="0" MinVal="-10000" MaxVal="10000"/>
+	<VirtualInHttpCmd Title="Red" Comment="" Check="\iRed@\i\v" Signed="true" Analog="true" SourceValLow="0" DestValLow="0" SourceValHigh="100" DestValHigh="100" DefVal="0" MinVal="-10000" MaxVal="10000"/>
+	<VirtualInHttpCmd Title="Green" Comment="" Check="\iGreen@\i\v" Signed="true" Analog="true" SourceValLow="0" DestValLow="0" SourceValHigh="100" DestValHigh="100" DefVal="0" MinVal="-10000" MaxVal="10000"/>
+	<VirtualInHttpCmd Title="Blue" Comment="" Check="\iBlue@\i\v" Signed="true" Analog="true" SourceValLow="0" DestValLow="0" SourceValHigh="100" DestValHigh="100" DefVal="0" MinVal="-10000" MaxVal="10000"/>
+	<VirtualInHttpCmd Title="Pattern" Comment="" Check="\iPattern@\i\v" Signed="true" Analog="true" SourceValLow="0" DestValLow="0" SourceValHigh="100" DestValHigh="100" DefVal="0" MinVal="-10000" MaxVal="10000"/>
+	<VirtualInHttpCmd Title="Speed" Comment="" Check="\iSpeed@\i\v" Signed="true" Analog="true" SourceValLow="0" DestValLow="0" SourceValHigh="100" DestValHigh="100" DefVal="0" MinVal="-10000" MaxVal="10000"/>
+	<VirtualInHttpCmd Title="Warmwhite" Comment="" Check="\iWarmwhite@\i\v" Signed="true" Analog="true" SourceValLow="0" DestValLow="0" SourceValHigh="100" DestValHigh="100" DefVal="0" MinVal="-10000" MaxVal="10000"/>
+	<VirtualInHttpCmd Title="Coldwhite" Comment="" Check="\iColdwhite@\i\v" Signed="true" Analog="true" SourceValLow="0" DestValLow="0" SourceValHigh="100" DestValHigh="100" DefVal="0" MinVal="-10000" MaxVal="10000"/>
+</VirtualInHttp>
