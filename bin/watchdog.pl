@@ -56,7 +56,7 @@ eval {
 # alarm 0;
 
 # AUTOSTART nach einem neustart oder abstutz!
-# Start Demane neu und prüfe noch einaml.
+# Start Deamen neu und prüfe noch einmal.
 if($autostart == 1){
 	LOGERR "Autostart";
 	system ("perl '$lbpbindir/magichome-control.pl' start &");

@@ -39,14 +39,6 @@ $LOX_PW = $miniservers{1}{Pass};
 my ($socket,$received_data);
 my ($peeraddress,$peerport);
 
-
-# Datum und Uhrzeit zusammenbauen
-my $t = my $t = localtime;
-$mdy    = $t->dmy(".");
-$hms    = $t->hms;
-$datumtime = "$mdy $hms";
-#print $datumtime;
-
 $UDP_Port2 = $UDP_Port+1;
 
 
@@ -76,6 +68,12 @@ LOGSTART "MagicHome demand UDPMonitor start";
 
 while(1)
 {
+# Datum und Uhrzeit zusammenbauen
+my $t = my $t = localtime;
+$mdy    = $t->dmy(".");
+$hms    = $t->hms;
+$datumtime = "$mdy $hms";
+#print $datumtime;
 
 
 my $filename = 'return.log';
@@ -91,7 +89,7 @@ $recieved_data = decode('iso-8859-1',encode('utf-8', $recieved_data));
 #print "\n";
 
 #print "$recieved_data   $datumtime \n"; 
-LOGINF "---------------  START ---------------";
+LOGDEB "---------------  START DEBUG ---------------";
 LOGINF "RECIVED DATE: $recieved_data   $datumtime"; 
 
 
@@ -329,7 +327,7 @@ if(index($MagicHome_Befehl,"all_on")!=-1){
 } 
 
 
-LOGINF "----------------  END ----------------";
+LOGDEB "----------------  END DEBUG ----------------";
 # LOGEND "Operation finished sucessfully.";
 }
 

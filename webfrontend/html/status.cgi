@@ -117,7 +117,7 @@ while (my $row = <$fh>) {
         #     |  |  |  |  |  speed: 0f = highest f0 is lowest
         #     |  |  |  |  <don't know yet>
         #     |  |  |  preset pattern
-        #     |  |  off(24)/on(23)
+        #     |  |  off(0x24)/on(0x23)
         #     |  type
         #     msg head
         #
@@ -160,13 +160,13 @@ while (my $row = <$fh>) {
         #     |  |  |  |  |  speed: 0f = highest f0 is lowest
         #     |  |  |  |  <don't know yet>
         #     |  |  |  preset pattern             
-        #     |  |  off(24)/on(23)
+        #     |  |  off(0x24)/on(0x23)
         #     |  type
         #     msg head
         #
 		if($splitestate[2]==0x24) {
 			print "Light\@0<br>";}
-		elsif ($splitestate[2]==0x25) {
+		elsif ($splitestate[2]==0x23) {
 			print "Light\@1<br>";}
 		else {
 			print "Light\@0<br>";}
