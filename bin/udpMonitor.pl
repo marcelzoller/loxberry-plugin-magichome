@@ -173,6 +173,9 @@ if(index($MagicHome_Befehl,"all_on")!=-1){
 		LOGDEB "Befehl --on";
 		LOGDEB "python magichome.py $MagicHome_IP -c $red,$green,$blue --on";
 		system ("python magichome.py $MagicHome_IP -c $red,$green,$blue --on>$filename 2>&1");
+		#$res = result($filename);
+		system ("sleep 0.7");
+		system ("python magichome.py $MagicHome_IP -c $red,$green,$blue --on>$filename 2>&1");
 		$res = result($filename); 
 		
 	} elsif(index($MagicHome_Befehl2,"off")!=-1){
@@ -241,12 +244,17 @@ if(index($MagicHome_Befehl,"all_on")!=-1){
 		LOGDEB "Befehl --on";
 		LOGDEB "python magichome.py $MagicHome_IP -c $red,$green,$blue --on";
 		system ("python magichome.py $MagicHome_IP -c $red,$green,$blue --on>$filename 2>&1");
+		#$res = result($filename); 
+		#sleep 1;
+		system ("sleep 0.7");
+		system ("python magichome.py $MagicHome_IP -c $red,$green,$blue --on>$filename 2>&1");
 		$res = result($filename); 
 		
 	} elsif(index($MagicHome_Befehl2,"off")!=-1){
 		#print "python magichome.py $MagicHome_IP -c $red,$green,$blue --off\n";
 		LOGDEB "Befehl --off";
 		LOGDEB "python magichome.py $MagicHome_IP -c $red,$green,$blue --off";
+		$res = result($filename);
 		system ("python magichome.py $MagicHome_IP -c $red,$green,$blue --off>$filename 2>&1");
 		$res = result($filename); 
 		
@@ -274,6 +282,9 @@ if(index($MagicHome_Befehl,"all_on")!=-1){
 		# print "python magichome.py $MagicHome_IP -w $warmwhite --on\n";
 		LOGDEB "Befehl --on";
 		LOGDEB "python magichome.py $MagicHome_IP -w $warmwhite --on";
+		system ("python magichome.py $MagicHome_IP -w $warmwhite --on>$filename 2>&1");
+		#$res = result($filename);
+		system ("sleep 0.7");
 		system ("python magichome.py $MagicHome_IP -w $warmwhite --on>$filename 2>&1");
 		$res = result($filename); 
 		
@@ -306,6 +317,9 @@ if(index($MagicHome_Befehl,"all_on")!=-1){
 		# print "python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2 --on\n";
 		LOGDEB "Befehl --on";
 		LOGDEB "python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2 --on";
+		system ("python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2 --on>$filename 2>&1");
+		#$res = result($filename);
+		system ("sleep 0.7");
 		system ("python magichome.py $MagicHome_IP -p $pattern $MagicHome_Befehl2 --on>$filename 2>&1");
 		$res = result($filename); 
 		
